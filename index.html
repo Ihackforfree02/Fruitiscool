@@ -48,4 +48,64 @@
       top: -50px;
       width: 40px;
       height: 40px;
-      background
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Toad_Artwork.png/64px-Toad_Artwork.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(100vh); }
+    }
+
+    #start-message {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.7);
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 1.2em;
+      z-index: 3;
+      animation: fadeOut 5s forwards;
+    }
+
+    @keyframes fadeOut {
+      0% { opacity: 1; }
+      80% { opacity: 1; }
+      100% { opacity: 0; display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="border-animate"></div>
+  <div class="content">
+    <h1>Welcome to Mushroom Mania 🍄</h1>
+    <p>Explore the magical world of fungi, from forest floors to fairy tales.</p>
+  </div>
+  <div id="start-message">🌟 Page has started! Enjoy the mushroom magic!</div>
+
+  <script>
+    const createMushroom = () => {
+      const mushroom = document.createElement('div');
+      mushroom.classList.add('mushroom');
+      mushroom.style.left = Math.random() * window.innerWidth + 'px';
+      mushroom.style.animationDuration = (3 + Math.random() * 5) + 's';
+      document.body.appendChild(mushroom);
+
+      setTimeout(() => {
+        mushroom.remove();
+      }, 8000);
+    };
+
+    setInterval(createMushroom, 300);
+
+    window.addEventListener('beforeunload', function (e) {
+      e.preventDefault();
+      e.returnValue = '🍄 Thanks for visiting Mushroom Mania!';
+    });
+  </script>
+</body>
+</html>
